@@ -3,6 +3,7 @@
 namespace TaskHamster\Scheduler;
 
 use Cron\CronExpression;
+use Carbon\Carbon;
 
 abstract class Event
 {
@@ -10,8 +11,8 @@ abstract class Event
 
     abstract public function handle();
 
-    public function isDueToRun()
+    public function isDueToRun(Carbon $date)
     {
-        return CronExpression::factory($this->expression)->isDue();
+        return CronExpression::factory($this->expression)->isDue($date);
     }
 }
