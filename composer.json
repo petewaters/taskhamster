@@ -10,6 +10,13 @@
         }
     ],
     "require": {
-        "phpunit/phpunit": "^6.4"
+        "phpunit/phpunit": "^6.4",
+        "dragonmantank/cron-expression": "^2.0",
+        "nesbot/carbon": "^1.22"
+    },
+    "autoload": {
+        "psr-4": {
+            "TaskHamster\\": "app"
+        }
     }
 }
