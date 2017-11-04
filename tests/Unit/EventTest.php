@@ -1,6 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
+use Carbon\Carbon;
 
 use TaskHamster\Scheduler\Event;
 
@@ -19,6 +20,15 @@ class EventTest extends TestCase
     {
         $event = $this->getMockForAbstractClass(Event::class);
 
-        $this->assertTrue($event->isDueToRun());
+        $this->assertTrue($event->isDueToRun(Carbon::now()));
+    }
+
+    /** @test */
+    public function event_should_not_be_run()
+    {
+        $event = $this->getMockForAbstractClass(Event::class);
+        $event->expression = '0 0 1 * *';
+
+        $this->assertFalse($event->isDueToRun(Carbon::create(2017, 11, 4, 0, 0, 0)));
     }
 }
