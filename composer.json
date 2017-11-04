@@ -1,0 +1,15 @@
+{
+    "name": "pete/taskhamster",
+    "description": "A custom task scheduler",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pete Waters",
+            "email": "pete.d.waters@gmail.com"
+        }
+    ],
+    "require": {
+        "phpunit/phpunit": "^6.4"
+    }
+}
