@@ -31,6 +31,71 @@ trait FrequenciesTrait
         return $this->insertIntoExpression(1, '*/30');
     }
 
+    public function hourly()
+    {
+        return $this->hourlyAt();
+    }
+
+    public function hourlyAt(int $minute = 1)
+    {
+        return $this->insertIntoExpression(1, $minute);
+    }
+
+    public function daily()
+    {
+        return $this->dailyAt();
+    }
+
+    public function dailyAt(int $hour = 0, int $minute = 0)
+    {
+        return $this->insertIntoExpression(1, [$minute, $hour]);
+    }
+
+    public function twiceDaily(int $firstHour = 1, int $lastHour= 12)
+    {
+        return $this->insertIntoExpression(1, [0, "$firstHour,$lastHour"]);
+    }
+
+    public function days(...$days)
+    {
+        return $this->insertIntoExpression(5, implode(',', $days ?: ['*']));
+    }
+
+    public function mondays()
+    {
+        return $this->days(1);
+    }
+
+    public function tuesdays()
+    {
+        return $this->days(2);
+    }
+
+    public function wednesdays()
+    {
+        return $this->days(3);
+    }
+
+    public function thursdays()
+    {
+        return $this->days(4);
+    }
+
+    public function fridays()
+    {
+        return $this->days(5);
+    }
+
+    public function saturdays()
+    {
+        return $this->days(6);
+    }
+
+    public function sundays()
+    {
+        return $this->days(7);
+    }
+
     public function insertIntoExpression(int $position, $value)
     {
         // In case of single value, cast to array so that we're always dealing with an array of values
