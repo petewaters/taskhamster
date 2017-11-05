@@ -224,13 +224,49 @@ class FrequenciesTest extends TestCase
          $this->assertEquals($frequencies->expression, '* * * * 6');
      }
 
-      /** @test */
+    /** @test */
     public function can_set_sundays()
     {
         $frequencies = $this->frequencies();
         $frequencies->sundays();
 
         $this->assertEquals($frequencies->expression, '* * * * 7');
+    }
+
+    /** @test */
+    public function can_set_weekdays()
+    {
+        $frequencies = $this->frequencies();
+        $frequencies->weekdays();
+
+        $this->assertEquals($frequencies->expression, '* * * * 1,2,3,4,5');
+    }
+
+    /** @test */
+    public function can_set_weekends()
+    {
+        $frequencies = $this->frequencies();
+        $frequencies->weekends();
+
+        $this->assertEquals($frequencies->expression, '* * * * 6,7');
+    }
+
+    /** @test */
+    public function can_set_at_time()
+    {
+        $frequencies = $this->frequencies();
+        $frequencies->at(9, 0);
+
+        $this->assertEquals($frequencies->expression, '0 9 * * *');
+    }
+
+    /** @test */
+    public function can_set_day_and_time()
+    {
+        $frequencies = $this->frequencies();
+        $frequencies->at(9, 0)->weekdays();
+
+        $this->assertEquals($frequencies->expression, '0 9 * * 1,2,3,4,5');
     }
 
     protected function frequencies()
