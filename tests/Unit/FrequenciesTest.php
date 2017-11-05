@@ -126,6 +126,15 @@ class FrequenciesTest extends TestCase
     }
 
     /** @test */
+    public function can_get_correct_expression_when_chaining()
+    {
+        $frequencies = $this->frequencies();
+        $frequencies->daily()->daily();
+
+        $this->assertEquals($frequencies->expression, '0 0 * * *');
+    }
+
+    /** @test */
     public function can_set_daily_at_using_defaults()
     {
         $frequencies = $this->frequencies();
