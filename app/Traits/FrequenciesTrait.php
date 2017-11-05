@@ -96,6 +96,21 @@ trait FrequenciesTrait
         return $this->days(7);
     }
 
+    public function weekdays()
+    {
+        return $this->days(1, 2, 3, 4, 5);
+    }
+
+    public function weekends()
+    {
+        return $this->days(6, 7);
+    }
+
+    public function at(int $hour = 0, int $minute = 0)
+    {
+        return $this->insertIntoExpression(1, [$minute, $hour]);
+    }
+
     public function insertIntoExpression(int $position, $value)
     {
         // In case of single value, cast to array so that we're always dealing with an array of values
