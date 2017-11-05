@@ -139,7 +139,7 @@ trait FrequenciesTrait
         $expression = explode(' ', $this->expression);
         
         // Insert the new value(s) at the specified position
-        array_splice($expression, $position - 1, 1, $value);
+        array_splice($expression, $position - 1, count($value), $value);
 
         // Make sure the new expression isn't longer than the allowed for an expression
         $expression = array_slice($expression, 0, 5);
