@@ -35,6 +35,25 @@ class FrequenciesTest extends TestCase
     }
 
     /** @test */
+    public function can_insert_cron_expressions_using_array()
+    {
+        $frequencies = $this->frequencies();
+        $frequencies->insertIntoExpression(1, ['*/10', '1']);
+
+        $this->assertEquals($frequencies->expression, '*/10 1 * * *');
+    }
+
+    /** @test */
+    public function cannot_replace_past_end_of_expression()
+    {
+        $frequencies = $this->frequencies();
+        $frequencies->insertIntoExpression(5, ['*/10', '1']);
+
+        $this->assertEquals($frequencies->expression, '* * * * */10');
+    }
+
+
+    /** @test */
     public function can_set_every_minute()
     {
         $frequencies = $this->frequencies();
