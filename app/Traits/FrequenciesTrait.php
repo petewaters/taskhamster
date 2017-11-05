@@ -111,6 +111,26 @@ trait FrequenciesTrait
         return $this->insertIntoExpression(1, [$minute, $hour]);
     }
 
+    public function weekly()
+    {
+        return $this->insertIntoExpression(5, 0);
+    }
+
+    public function weeklyOn(int $day = 0)
+    {
+        return $this->insertIntoExpression(5, $day);
+    }
+
+    public function monthly()
+    {
+        return $this->insertIntoExpression(1, [0, 0, 1]);
+    }
+
+    public function monthlyOn(int $day = 1)
+    {
+        return $this->insertIntoExpression(1, [0, 0, $day]);
+    }
+
     public function insertIntoExpression(int $position, $value)
     {
         // In case of single value, cast to array so that we're always dealing with an array of values
