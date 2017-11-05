@@ -269,6 +269,43 @@ class FrequenciesTest extends TestCase
         $this->assertEquals($frequencies->expression, '0 9 * * 1,2,3,4,5');
     }
 
+    /** @test */
+    public function can_set_weekly()
+    {
+        $frequencies = $this->frequencies();
+        $frequencies->weekly();
+
+        $this->assertEquals($frequencies->expression, '* * * * 0');
+    }
+
+    /** @test */
+    public function can_set_weekly_on_day()
+    {
+        $frequencies = $this->frequencies();
+        $frequencies->weeklyOn(3);
+
+        $this->assertEquals($frequencies->expression, '* * * * 3');
+    }
+
+
+    /** @test */
+    public function can_set_monthly()
+    {
+        $frequencies = $this->frequencies();
+        $frequencies->monthly();
+
+        $this->assertEquals($frequencies->expression, '0 0 1 * *');
+    }
+
+    /** @test */
+    public function can_set_monthly_on_day()
+    {
+        $frequencies = $this->frequencies();
+        $frequencies->monthlyOn(13);
+
+        $this->assertEquals($frequencies->expression, '0 0 13 * *');
+    }
+
     protected function frequencies()
     {
         $frequencies = $this->getMockForTrait(FrequenciesTrait::class);
